@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>employee Enrollment Form</title>
+<link rel="stylesheet" th:href="@{/css/styles.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+
+</head>
+<body>
+
+	<div class="container col-12">
+		<div class="row col-12">
+			<div class="card w-100 py-5 bg-gray">
+				<h1 class="w-100 text-primary text-info text-center py-3">Edit Form (Employee)</h1>
+				<hr>
+				<form action="#" class="w-100 px-5 pt-2 ml-5 mb-5" th:action="@{/update/employee}" th:object="${employee}" method="post">
+
+					<input type="hidden" th:value="${id}" th:field="*{id}" />
+					<table class="table p-3 borderzero">
+						<tr>
+							<td width="30%"><label class="form-control">First Name</label></td>
+
+							<td width="70%" align="left">
+							<input class="form-control" type="text" th:field="*{firstName}" /> 
+							<label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:class="'error'">Error in First Name</label></td>
+						</tr>
+						<tr>
+							<td><label class="form-control">Last Name</label></td>
+
+							<td><input class="form-control" type="text" th:field="*{lastName}" /> 
+							<label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:class="'error'">Error in Last Name</label></td>
+
+						</tr>
+						<tr>
+							<td><label class="form-control border-0">Email</label></td>
+							<td><input class="form-control" type="text" th:field="*{email}" /> 
+							<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="'error'">Error in Email address</label></td>
+						</tr>
+						
+						<tr>
+							<td><label class="form-control border-0">Created At</label></td>
+
+							<td><input class="form-control pl-3" type="datetime-local" th:field="*{createdAt}" /> 
+							<label th:if="${#fields.hasErrors('createdAt')}" th:errors="*{createdAt}" th:class="'error'">Error in Date Creation</label></td>
+						</tr>
+
+								
+						<tr>
+							<td><label class="form-control">Country</label></td>
+
+							<td>
+								<select class="form-control" th:field="*{country}">
+									<option th:each="country : ${countries}" th:value="${country}" th:text="${country}">Country</option>
+								</select> 
+								<label th:if="${#fields.hasErrors('country')}" th:errors="*{country}" th:class="'error'">Error in Country</label>
+							</td>
+						</tr>
+						<tr>
+							<td><label class="form-control d-inline-flex">Gender</label></td>
+
+							<td>
+								<input class="new-eff" type="radio" th:field="*{sex}" value="M" /><label class="ml-3">Male</label>
+								<input class="new-eff ml-5" type="radio" th:field="*{sex}" value="F" /><label class="ml-3">Female</label><br/>
+								<label th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}" th:class="'error'">Error</label>
+							</td>
+
+						</tr>
+
+						<tr>
+							<td><label class="form-control">Section</label></td>
+
+							<td>
+								<select class="form-control" th:field="*{section}">
+									<option th:each="section : ${sections}" th:value="${section}" th:text="${section}">Section</option>
+								</select>
+							</td>
+						</tr>
+
+						<tr>
+							<td><a class="text-center p-2 pt-5 mt-2" th:href="@{/view/admin/employees/}"><strong>-->  Go Back</strong></a></td>
+							<td>
+								<button class="btn btn-lg btn-info btn-block w-25 my-2 ml-5 form-group loginsub p-2" type="submit" th:text="Edit"></button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</body>
+</html>

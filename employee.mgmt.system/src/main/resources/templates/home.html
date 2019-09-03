@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Sursa - Home</title>
+<title>Home Page</title>
+
+<link rel="stylesheet" th:href="@{/css/styles.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
 </head>
+
+
 <body>
-Hello user
+	<div class="container col-12">
+		<div class="row col-12">
+			<h1 class="w-100 text-primary text-info text-center py-5">Sursa
+				Tech Company</h1>
+
+			<div class="col-4"></div>
+			<div class="col-3">
+
+				<form th:action="@{/register}" method="POST" class="w-100 userform">
+					<button type="submit"
+						class="btn btn-lg btn-primary btn-block w-50 my-5 form-group loginsub p-2"
+						th:text="Register"></button>
+				</form>
+			</div>
+
+			<div class="col-3">
+				<form th:action="@{/login}" method="POST" class="form-signin">
+					<button type="submit"
+						class="btn btn-lg btn-primary btn-block w-50 my-5 form-group loginsub p-2"
+						th:text="Login"></button>
+				</form>
+			</div>
+
+
+
+
+		</div>
+		<div class="form-group w-100 text-center f25">
+			<a th:href="@{/view/employees}" class="text-center">Guest View of Employees</a>
+		</div>
+	</div>
 </body>
 </html>

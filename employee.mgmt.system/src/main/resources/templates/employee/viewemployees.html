@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Employees List</title>
+
+<link rel="stylesheet" th:href="@{/css/styles.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+</head>
+
+
+<body>
+	<div class="container col-12">
+		<div class="row col-12">
+			<div class="card w-100 py-4 bg-gray">
+				<h1 class="w-100 text-primary text-info text-center py-3" th:if="${#httpServletRequest.remoteUser}">View Form (Employee)</h1>
+				<h1 class="w-100 text-primary text-info text-center py-3" th:unless="${#httpServletRequest.remoteUser}">Guest User View</h1>
+				<hr/>
+
+				<!-- form action="" th:object="" th:action="" -->
+				<form th:object="${employee}" class="w-100 px-5">
+					<table class="table mt-3">
+						<tr class="bg-success text-white">
+							<th>Id</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Sex</th>
+							<th>Date Modified</th>
+							<th>Email</th>
+							<th>Section</th>
+							<th>Country</th>
+						</tr>
+
+						<tr th:each="employee : ${list}" class="bg-white">
+							<td th:text="${employee.id}"></td>
+							<td th:text="${employee.firstName}"></td>
+							<td th:text="${employee.lastName}"></td>
+							<td th:text="${employee.sex}"></td>
+							<td th:text="${employee.createdAt}"></td>
+							<td th:text="${employee.email}"></td>
+							<td th:text="${employee.section}"></td>
+							<td th:text="${employee.country}"></td>
+						</tr>
+
+					</table>
+
+
+				</form>
+
+				<div class="container col-12 text-right mt-5" th:if="${#httpServletRequest.remoteUser}">
+					<div>
+						<span class="text-success f25">Welcome <span class="ml-1 text-info f16">[[${#httpServletRequest.remoteUser}]]</span></span> 
+						<a th:href="@{/logout}">
+							<button class="btn btn-danger p-2 mt-3 ml-2 mr-5">Logout</button>
+						</a>
+					</div>
+				</div>
+				
+				<div class="container col-12 text-right mt-5 mr-5" th:unless="${#httpServletRequest.remoteUser}">
+					<div>
+						<a class="ml-5 btn bg-info p-3 text-white mr-5" th:href="@{/}">Go Back</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

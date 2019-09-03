@@ -42,9 +42,9 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 		}
 		
 		if(roles.contains("ADMIN_USER")) {
-			url = "/admin";
+			url = "/view/admin/employees";
 		} else if(roles.contains("SITE_USER")) {
-			url = "/home";
+			url = "/view/employees";
 		}
 		return url;
 		
